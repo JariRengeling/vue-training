@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Vue.js training</title>
+    <title>Vue.js training</title>
+    
+    <style>
+        .is-loading {background: red;}
+    </style>
 </head>
 <body>
 
    <div id="root">
-    
-        <ul>
-            <li v-for="name in names" v-text="name"></li>
-        </ul>
-        
-        <input id="input" type="text" v-model="newName">
-        
-        <button @click="addName">Add Name</button>
-    
+       <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Click Me</button>
    </div>
 
     <!-- development version, includes helpful console warnings -->
@@ -23,17 +19,16 @@
     <script>
         var app = new Vue({
             el: '#root',
-                data: {
-                    newName: '',
-                    names: ['Joe', 'Mary', 'Jane', 'Jack']
-                },
+            
+            data: {
+                isLoading: false
+            },
             
             methods: {
-                addName() {
-                    this.names.push(this.newName);
-                    this.newName = '';
+                toggleClass() {
+                    this.isLoading = true;
                 }
-            },
+            }
         });
     </script>
 
